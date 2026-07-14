@@ -9,7 +9,7 @@ The agent said done. The tests disagree. Mindlas (Mind-Atlas) reads the session 
 
 Open and local. Nothing leaves your machine.
 
-![Demo: Context Rot climbs to ALERT, Context Repair lands, the gauge falls](docs/assets/mindlas-demo.gif)
+![Demo: Context Rot climbs to ALERT, Context Repair lands, the gauge falls](https://github.com/Evolutionairy-AI/MINDLAS/blob/main/docs/assets/mindlas-demo.gif)
 
 Long sessions deteriorate silently. Context fills with tool-output noise. The original task scrolls away and stops steering the agent. Edits spread across files. The same tool fails in a loop. None of this throws an error; the agent keeps producing confident output while its working state rots.
 
