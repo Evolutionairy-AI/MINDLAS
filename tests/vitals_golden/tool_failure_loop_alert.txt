@@ -1,0 +1,11 @@
+LOOP 100 ALERT   ▴ ████████████████████  Tool Failure Loop is elevated — the agent is repeatedly failing or retrying the same tool/command without new evidence.
+    - 4 failed tool calls
+    - 4 consecutive failures
+    - 4 same-signature failures
+    - 4 same-command retries
+    - 3 retries without new evidence
+    - active tool: Bash
+    - failure signature: timeout:Bash:7fb5f872
+    - failure category: timeout
+  Correction: The same tool failure is repeating without new evidence. Stop the loop and require a changed plan before retrying — do not retry the same command unchanged.
+  Suggested: /mindlas-loop-stop

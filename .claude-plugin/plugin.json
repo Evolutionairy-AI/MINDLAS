@@ -1,0 +1,9 @@
+{
+  "name": "mindlas",
+  "version": "0.1.0",
+  "description": "Deterministic reliability instrument: live gauges + non-native repairs for coding agents. Requires the mindlas CLI on PATH (install from source: pip install -e .).",
+  "author": { "name": "Evolutionairy AI" },
+  "homepage": "https://github.com/Evolutionairy-AI/MINDLAS",
+  "repository": "https://github.com/Evolutionairy-AI/MINDLAS",
+  "license": "Apache-2.0"
+}

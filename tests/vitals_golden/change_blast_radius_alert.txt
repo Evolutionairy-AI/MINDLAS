@@ -1,0 +1,8 @@
+BLAST 82 ALERT   ▴ ████████████████░░░░  Change Blast Radius is elevated — the patch has spread across many files, directories, or concerns.
+    - 9 files changed
+    - 412 lines changed
+    - 4 directories touched
+    - 5 concerns detected
+    - config changed alongside source
+  Correction: The patch is broad enough to raise review and coordination risk. Run the Mindlas Patch Splitter to partition it into smaller, coherent, reviewable bundles.
+  Suggested: /mindlas-blast-split

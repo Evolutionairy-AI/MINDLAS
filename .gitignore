@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+build/
+dist/
+/out/
+# runtime artifact dir — never commit (would read as stale verification evidence)
+.mindlas/
+# local Claude Code project settings — machine-specific permission grants
+.claude/
+.ruff_cache/
+presentation.html

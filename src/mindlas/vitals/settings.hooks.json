@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [ { "type": "command", "command": "mindlas hook SessionStart", "timeout": 10 } ] }
+    ],
+    "UserPromptSubmit": [
+      { "hooks": [ { "type": "command", "command": "mindlas hook UserPromptSubmit", "timeout": 10 } ] }
+    ],
+    "PreToolUse": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "mindlas hook PreToolUse", "timeout": 10 } ] }
+    ],
+    "PostToolUse": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "mindlas hook PostToolUse", "timeout": 10 } ] }
+    ],
+    "PostToolUseFailure": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "mindlas hook PostToolUseFailure", "timeout": 10 } ] }
+    ],
+    "Stop": [
+      { "hooks": [ { "type": "command", "command": "mindlas hook Stop", "timeout": 15 } ] }
+    ],
+    "PreCompact": [
+      { "matcher": "*", "hooks": [ { "type": "command", "command": "mindlas hook PreCompact", "timeout": 10 } ] }
+    ],
+    "PostCompact": [
+      { "hooks": [ { "type": "command", "command": "mindlas hook PostCompact", "timeout": 10 } ] }
+    ]
+  }
+}

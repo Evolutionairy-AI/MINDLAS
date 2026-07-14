@@ -1,0 +1,8 @@
+VERIFY 82 ALERT   ▴ ████████████████░░░░  Verification Debt is elevated — changed code lacks fresh evidence it works.
+    - 5 files changed
+    - 312 lines changed
+    - production code changed with no test changes
+    - last verifier: unknown
+    - completion claimed without fresh evidence
+  Correction: Code changed without a fresh passing verifier. Run the Mindlas Verify Gate to obtain evidence-based confirmation that the changes still work.
+  Suggested: /mindlas-verify

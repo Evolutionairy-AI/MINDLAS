@@ -1,0 +1,7 @@
+ROT   84 ALERT   ▴ █████████████████░░░  Context Rot is elevated.
+    - 40 turns in the session
+    - 39 turns since the task was last restated
+    - 24 large tool outputs accumulated
+    - context/session mass ~100%
+  Correction: The session has accumulated stale context, buried constraints, or tool-output mass. Run Mindlas Context Repair to compact and restate the task contract.
+  Suggested: /mindlas-repair
