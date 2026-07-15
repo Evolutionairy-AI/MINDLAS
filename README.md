@@ -41,6 +41,8 @@ mindlas status --demo context_rot_alert                    # a real ALERT, right
 mindlas context repair --apply --demo context_rot_alert    # watch the correction land: 100 -> 4
 ```
 
+Already installed from PyPI? `pip install mindlas` skips the clone and the venv — run the two demo commands directly.
+
 The demo runs the full loop offline against a bundled fixture. Every frame is labeled demo; live sessions earn their own numbers.
 
 ## Wire it into your live sessions
@@ -49,11 +51,18 @@ Two pieces: the **hooks**, which record session events into the ledger the gauge
 
 ### Option A — plugin (recommended)
 
-Loads the eight hooks **and** the five correction slash commands:
+Loads the eight hooks **and** the five correction slash commands. Still standing in the MINDLAS clone from the quickstart, venv active? The plugin dir is simply `.`:
 
 ```bash
-claude --plugin-dir <path-to-MINDLAS-clone>   # hooks + slash commands, loaded as a plugin
+claude --plugin-dir .                         # hooks + slash commands, loaded as a plugin
 mindlas install-statusline                    # the status line (restart Claude Code after)
+```
+
+To use Mindlas on your own project, launch from that project's directory and point `--plugin-dir` at the clone instead:
+
+```bash
+cd ~/my-project
+claude --plugin-dir ~/path/to/MINDLAS
 ```
 
 The plugin's hooks call `mindlas` by name, so launch `claude` from the shell where the venv is active; without that PATH they silently do nothing.
@@ -205,7 +214,7 @@ Read commands default to the latest live session; `--session <uuid>` targets an 
 | `install-hooks` / `install-statusline` | `--uninstall` | Wire/remove the hooks and status line. |
 | `hook <Event>` / `statusline` | (none) | Internal: hook dispatch and status-line rendering. |
 
-Behavior toggles (all optional, defaults apply): `MINDLAS_HOME`, `MINDLAS_PROJECT_ROOT`, `MINDLAS_GATE`, `MINDLAS_LOOP_GUARD`, `MINDLAS_INTERCEPT_COMPACT`, `MINDLAS_TESTTIER`, `MINDLAS_BAR`: defaults, modes, and effects in [docs/configuration.md](https://github.com/Evolutionairy-AI/MINDLAS/blob/main/docs/configuration.md).
+Behavior toggles (all optional, defaults apply): `MINDLAS_HOME`, `MINDLAS_PROJECT_ROOT`, `MINDLAS_GATE`, `MINDLAS_LOOP_GUARD`, `MINDLAS_INTERCEPT_COMPACT`, `MINDLAS_TESTTIER`, `MINDLAS_TEST_PATTERNS`, `MINDLAS_BAR`: defaults, modes, and effects in [docs/configuration.md](https://github.com/Evolutionairy-AI/MINDLAS/blob/main/docs/configuration.md).
 
 ## Proven offline
 
