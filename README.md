@@ -9,7 +9,7 @@ The agent said done. The tests disagree. Mindlas (Mind-Atlas) reads the session 
 
 Open and local. Nothing leaves your machine.
 
-![Demo: Context Rot climbs to ALERT, Context Repair lands, the gauge falls](docs/assets/mindlas-demo.gif)
+![Demo: Context Rot climbs to ALERT, Context Repair lands, the gauge falls](https://evolutionairy.ai/lib/mindlas-demo.gif)
 
 Long sessions deteriorate silently. Context fills with tool-output noise. The original task scrolls away and stops steering the agent. Edits spread across files. The same tool fails in a loop. None of this throws an error; the agent keeps producing confident output while its working state rots.
 
@@ -45,18 +45,42 @@ The demo runs the full loop offline against a bundled fixture. Every frame is la
 
 ## Wire it into your live sessions
 
-Two pieces: the **hooks**, which record session events into the ledger the gauges read, and the **status line**, the always-on gauge readout under your prompt.
+Two pieces: the **hooks**, which record session events into the ledger the gauges read, and the **status line**, the always-on gauge readout under your prompt. The status line installs the same way in both options below. For the hooks there are two paths — **pick one, never both**: running both records every event twice and inflates the gauges.
+
+### Option A — plugin (recommended)
+
+Loads the eight hooks **and** the five correction slash commands:
 
 ```bash
 claude --plugin-dir <path-to-MINDLAS-clone>   # hooks + slash commands, loaded as a plugin
 mindlas install-statusline                    # the status line (restart Claude Code after)
 ```
 
-Launch `claude` from the shell where the venv is active, since the hooks call the `mindlas` CLI and inherit that shell's PATH; without it they silently do nothing.
+The plugin's hooks call `mindlas` by name, so launch `claude` from the shell where the venv is active; without that PATH they silently do nothing.
 
-The plugin also ships five slash commands that drive the corrections on the live session: `/mindlas:mindlas-repair`, `/mindlas:mindlas-verify`, `/mindlas:mindlas-blast-split`, `/mindlas:mindlas-loop-stop`, `/mindlas:mindlas-loop-release`. Each is a thin wrapper over its CLI equivalent (see the [CLI reference](#cli-reference)). The gauges surface them in short form: `/mindlas-repair` is `/mindlas:mindlas-repair`.
+The five slash commands drive the corrections on the live session: `/mindlas:mindlas-repair`, `/mindlas:mindlas-verify`, `/mindlas:mindlas-blast-split`, `/mindlas:mindlas-loop-stop`, `/mindlas:mindlas-loop-release`. Each is a thin wrapper over its CLI equivalent (see the [CLI reference](#cli-reference)). The gauges surface them in short form: `/mindlas-repair` is `/mindlas:mindlas-repair`.
 
-If your setup can't load plugins, `mindlas install-hooks` wires the same eight hooks directly into Claude Code instead. Pick **one** path: plugin *or* `install-hooks`, never both, or every event is recorded twice and the gauges inflate. Everything reverses independently: launch without `--plugin-dir`, or `mindlas install-hooks --uninstall` / `mindlas install-statusline --uninstall`.
+### Option B — CLI install (the PyPI path)
+
+Use this when you installed Mindlas from PyPI — the plugin directory ships with the git clone, not the wheel — or when your setup can't load plugins. It wires the same eight hooks directly into Claude Code's `settings.json`:
+
+```bash
+pip install mindlas                           # from PyPI; skip if you already installed from the clone
+mindlas install-hooks                         # the same eight hooks (restart Claude Code after)
+mindlas install-statusline                    # the status line
+```
+
+`install-hooks` records the absolute path of your venv's `mindlas`, so these hooks work regardless of which shell launches `claude`. This path ships no slash commands; run the corrections through their CLI equivalents instead (`mindlas context repair`, `mindlas verify gate`, `mindlas blast split`, `mindlas loop stop` — see the [CLI reference](#cli-reference)).
+
+### Undoing it
+
+Each piece reverses independently:
+
+| Installed via | Remove with |
+|---|---|
+| Plugin (Option A) | launch `claude` without `--plugin-dir` |
+| `mindlas install-hooks` (Option B) | `mindlas install-hooks --uninstall` |
+| `mindlas install-statusline` (both options) | `mindlas install-statusline --uninstall` |
 
 ### The eight hooks
 
@@ -181,7 +205,7 @@ Read commands default to the latest live session; `--session <uuid>` targets an 
 | `install-hooks` / `install-statusline` | `--uninstall` | Wire/remove the hooks and status line. |
 | `hook <Event>` / `statusline` | (none) | Internal: hook dispatch and status-line rendering. |
 
-Behavior toggles (all optional, defaults apply): `MINDLAS_HOME`, `MINDLAS_PROJECT_ROOT`, `MINDLAS_GATE`, `MINDLAS_LOOP_GUARD`, `MINDLAS_INTERCEPT_COMPACT`, `MINDLAS_TESTTIER`, `MINDLAS_BAR`: defaults, modes, and effects in [docs/configuration.md](docs/configuration.md).
+Behavior toggles (all optional, defaults apply): `MINDLAS_HOME`, `MINDLAS_PROJECT_ROOT`, `MINDLAS_GATE`, `MINDLAS_LOOP_GUARD`, `MINDLAS_INTERCEPT_COMPACT`, `MINDLAS_TESTTIER`, `MINDLAS_BAR`: defaults, modes, and effects in [docs/configuration.md](https://github.com/Evolutionairy-AI/MINDLAS/blob/main/docs/configuration.md).
 
 ## Proven offline
 
@@ -197,4 +221,4 @@ Activate the venv first, since several tests shell out to `ruff` and `pytest`, a
 
 ## License
 
-Apache 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
+Apache 2.0. See [LICENSE](https://github.com/Evolutionairy-AI/MINDLAS/blob/main/LICENSE) and [NOTICE](https://github.com/Evolutionairy-AI/MINDLAS/blob/main/NOTICE).
