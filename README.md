@@ -5,7 +5,7 @@
 
 **A coding agent rarely fails at turn one. It fails at turn forty.**
 
-The agent said done. The tests disagree. Mindlas (Mind-Atlas) reads the session live, catches the drift as it builds, and hands the agent a correction with the effect measured before and after.
+The agent said done. The tests disagree. Mindlas (Mind-Atlas) reads the session live, catches the drift as it builds, and hands the agent a correction.
 
 Open and local. Nothing leaves your machine.
 
